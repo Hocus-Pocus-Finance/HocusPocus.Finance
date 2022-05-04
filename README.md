@@ -8,7 +8,11 @@ npm install --save-dev truffle-plugin-verify
 
 ## Private key
 
-Update .env file with a private key
+Create .env file with a private key:
+
+```
+PKEYS="YOUR_PRIVATE_KEY"
+```
 
 ## Deploy contract
 
