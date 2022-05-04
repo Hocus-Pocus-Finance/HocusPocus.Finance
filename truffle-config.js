@@ -43,7 +43,7 @@ module.exports = {
           (process.env.PKEYS || "").split(","), // Array of account private keys
           "https://rpc.v2b.testnet.pulsechain.com"
         ),
-      gas: 5000000,
+      gas: 6000000,
       gasPrice: 50000000000,
       network_id: 941, // PulseChain Testnet network id
     },
