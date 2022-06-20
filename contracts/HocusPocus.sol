@@ -1,8 +1,8 @@
-/////////////////////////////////////////////////////
-///////////////////HOCUS//POCUS//////////////////////
-/////////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////HOCUS//POCUS////////////////////
+///////////////////////////////////////////////////
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.7;
 
 abstract contract Context {
     function _msgSender() internal view returns (address payable) {
@@ -567,7 +567,7 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
     mapping(address => bool) private _isExcluded;
     address[] private _excluded;
 
-    string private constant _name = "Hocus Pocus (TESTNET)";
+    string private constant _name = "Hocus Pocus";
     string private constant _symbol = "HOC";
     uint8 private constant _decimals = 4;
 
@@ -827,7 +827,7 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
     }
 
     function setLpPair(address pair, bool enabled) external onlyOwner {
-        if (enabled) {
+        if (!enabled) {
             lpPairs[pair] = false;
         } else {
             if (timeSinceLastPair != 0) {
