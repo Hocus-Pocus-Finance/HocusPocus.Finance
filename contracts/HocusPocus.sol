@@ -1,6 +1,3 @@
-///////////////////////////////////////////////////
-///////////////////HOCUS//POCUS////////////////////
-///////////////////////////////////////////////////
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.7;
 
@@ -551,7 +548,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
 ////////////////////CONTRACT//IMPLEMENTATION///////////////////
 ///////////////////////////////////////////////////////////////
 
-contract HocusPocus is Context, IERC20, ReentrancyGuard {
+contract HocusPocusFinance is Context, IERC20, ReentrancyGuard {
     // Ownership moved to in-contract for customizability.
     using Address for address;
     address private _owner;
@@ -567,7 +564,7 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
     mapping(address => bool) private _isExcluded;
     address[] private _excluded;
 
-    string private constant _name = "Hocus Pocus";
+    string private constant _name = "Hocus Pocus Finance";
     string private constant _symbol = "HOC";
     uint8 private constant _decimals = 4;
 
@@ -622,11 +619,11 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
 
     address public constant DEAD = 0x000000000000000000000000000000000000dEaD;
     address public constant charityWallet =
-        0x29E6d8b995C55767011adeeb1CB1d1Ed978BE451;
+        0x4bdA64c2e135E9c4F813a7CF6241821a0e8a7d8D;
     address public constant teamWallet =
-        0xd2642379D0D4dE718675321F7e0268E7BF4f1a47;
+        0xDc6085035e331d7289126fDD27bAFD84feC5DC67;
     address public constant treasuryWallet =
-        0xb7e2575C7BEC6eb03D454b8510Bd33Fe335EB3e6;
+        0x4CA0483A4234bcad8fa64010B71086B344001aF3;
 
     bool inSwap;
     uint256 public contractSwapTimer = 0 seconds;
@@ -830,12 +827,8 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
         if (!enabled) {
             lpPairs[pair] = false;
         } else {
-            if (timeSinceLastPair != 0) {
-                require(
-                    block.timestamp - timeSinceLastPair > 3 days,
-                    "3 Day cooldown.!"
-                );
-            }
+            if (timeSinceLastPair != 0) 
+                
             lpPairs[pair] = true;
             timeSinceLastPair = block.timestamp;
         }
@@ -1022,7 +1015,7 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
 
         dexRouter.swapExactTokensForETHSupportingFeeOnTransferTokens(
             swapAmt,
-            5,
+            0,
             path,
             address(this),
             block.timestamp
@@ -1035,8 +1028,8 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
             dexRouter.addLiquidityETH{value: liquidityBalance}(
                 address(this),
                 toLiquify,
-                5,
-                5,
+                0,
+                0,
                 DEAD,
                 block.timestamp
             );
@@ -1221,3 +1214,4 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
         return rSupply / tSupply;
     }
 }
+
