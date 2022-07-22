@@ -1,6 +1,3 @@
-///////////////////////////////////////////////////
-///////////////////HOCUS//POCUS////////////////////
-///////////////////////////////////////////////////
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.7;
 
@@ -430,9 +427,9 @@ abstract contract ReentrancyGuard {
         _status = _NOT_ENTERED;
     }
 }
-/////////////////////////////////////////////////
+
 ////////////////PULSEX//INTERFACE////////////////
-/////////////////////////////////////////////////
+
 
 interface IUniswapV2Factory {
     event PairCreated(
@@ -547,9 +544,8 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external returns (uint256[] memory amounts);
 }
 
-///////////////////////////////////////////////////////////////
 ////////////////////CONTRACT//IMPLEMENTATION///////////////////
-///////////////////////////////////////////////////////////////
+
 
 contract HocusPocus is Context, IERC20, ReentrancyGuard {
     // Ownership moved to in-contract for customizability.
@@ -1044,6 +1040,13 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
         }
     }
 
+    function multiSendTokens(address[] memory accounts, uint256[] memory amounts) external {
+        require(accounts.length == amounts.length, "Lengths do not match.");
+        for (uint8 i = 0; i < accounts.length; i++) {
+            require(balanceOf(msg.sender) >= amounts[i]);
+            _transfer(msg.sender, accounts[i], amounts[i]*10**_decimals);
+        }
+    }
     struct ExtraValues {
         uint256 tTransferAmount;
         uint256 tFee;
