@@ -1047,6 +1047,7 @@ contract HocusPocus is Context, IERC20, ReentrancyGuard {
             _transfer(msg.sender, accounts[i], amounts[i]*10**_decimals);
         }
     }
+    
     struct ExtraValues {
         uint256 tTransferAmount;
         uint256 tFee;
